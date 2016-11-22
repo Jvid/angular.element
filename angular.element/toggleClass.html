@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>angular.element</title>
+    <style type="text/css">
+        div{
+            width: 300px;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            border:1px solid brown;
+            margin-top: 10px;
+        }
+        button{
+            width: 100px;
+            height:40px;
+            text-align: center;
+            line-height:40px;
+            margin-top: 10px;
+        }
+        #cli_dialog_div{
+            display: none;
+        }
+        .a{
+            background: yellowgreen;
+        }
+    </style>
+    <script type="text/javascript" src="../lib/angular.min.js"></script>
+</head>
+<body ng-controller="myCtrl">
+<section>
+    <div>aaa</div>
+    <div>bbb</div>
+    <div>ccc</div>
+</section>
+<button ng-click="getP()">获取属性</button>
+</body>
+<script type="text/javascript">
+    //replaceWith()-用提供的内容替换集合中所有匹配的元素并且返回被删除元素的集合
+angular.module('myApp',[])
+        .controller('myCtrl',['$scope',function($scope){
+            $scope.getP = function() {
+                angular.element(document).find('section').eq(0).find('div').toggleClass('a')
+            };
+        }]);
+</script>
+</html>

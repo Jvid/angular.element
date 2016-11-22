@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>angular.element</title>
+    <style type="text/css">
+        div{
+            width: 300px;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            border:1px solid brown;
+            margin-top: 10px;
+        }
+        button{
+            width: 250px;
+            height:40px;
+            text-align: center;
+            line-height:40px;
+            margin-top: 10px;
+        }
+        #cli_dialog_div{
+            display: none;
+        }
+        .a{
+            background: yellowgreen;
+        }
+        .b{
+            height: auto;
+            border:none;
+        }
+    </style>
+    <script type="text/javascript" src="../lib/angular.min.js"></script>
+</head>
+<body ng-controller="myCtrl">
+<section>
+    <div>aaa</div>
+    <div>bbb</div>
+    <div>ccc</div>
+</section>
+<button ng-click="getP()">给section标签添加一个外层html</button>
+</body>
+<script type="text/javascript">
+    //wrap()-在每个匹配的元素外层包上一个html元素
+angular.module('myApp',[])
+        .controller('myCtrl',['$scope',function($scope){
+            $scope.getP = function() {
+                angular.element(document).find('section').eq(0).wrap('<div class="b">eee</div>')
+            };
+        }]);
+</script>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>angular.element</title>
+    <style type="text/css">
+        div{
+            width: 300px;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            border:1px solid brown;
+            margin-top: 10px;
+        }
+        button{
+            width: 100px;
+            height:40px;
+            text-align: center;
+            line-height:40px;
+            margin-top: 10px;
+        }
+        #cli_dialog_div{
+            display: none;
+        }
+    </style>
+    <script type="text/javascript" src="../lib/angular.min.js"></script>
+</head>
+<body ng-controller="myCtrl">
+<nav></nav>
+<section>
+    <div>aaaa</div>
+    <div>bbbb</div>
+    <div>cccc</div>
+</section>
+<div ng-click="save('aaa')">要保存的值</div>
+<button ng-click="showInfo()">弹出保存的值</button>
+</body>
+<script type="text/javascript">
+angular.module('myApp',[])
+.controller('myCtrl',['$scope',function($scope){
+    //data()-在匹配元素上存储任意相关数据
+    angular.element(document).find('section').eq(0).find('div').bind('click',function(){
+        angular.element(document).find('section').eq(0).data('a',this.innerHTML)
+        console.log(angular.element(document).find('section').eq(0).data('a'));
+    });
+    //可以实现将下面节点的数据保存到一个全局的导航上
+    $scope.save = function(s){
+        angular.element(document).find('nav').eq(0).data('id',s);
+    }
+    $scope.showInfo = function(){
+        alert(angular.element(document).find('nav').eq(0).data('id'))
+    }
+}]);
+</script>
+</html>

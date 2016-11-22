@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>angular.element</title>
+    <style type="text/css">
+        div{
+            width: 300px;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            border:1px solid brown;
+            margin-top: 10px;
+        }
+        button{
+            width: 100px;
+            height:40px;
+            text-align: center;
+            line-height:40px;
+            margin-top: 10px;
+        }
+        #cli_dialog_div{
+            display: none;
+        }
+    </style>
+    <script type="text/javascript" src="../lib/angular.min.js"></script>
+</head>
+<body ng-controller="myCtrl">
+<nav></nav>
+<section>
+    <div>aaaa</div>
+    <div>bbbb</div>
+    <div>cccc</div>
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+    </ul>
+</section>
+<button ng-click="del()">清空section</button>
+<button ng-click="cls()">删除section</button>
+<button ng-click="cre()">创建section</button>
+</body>
+<script type="text/javascript">
+//empty()-从DOM中去掉所有匹配的子元素,但是自己还被保留
+angular.module('myApp',[])
+.controller('myCtrl',['$scope',function($scope){
+    $scope.del = function() {
+        angular.element(document).find('section').eq(0).empty()
+    };
+    $scope.cls = function(){
+        angular.element(document).find('section').eq(0).detach();
+    };
+    $scope.cre = function(){
+        console.log('cre')
+        angular.element(document).find('nav').eq(0).append(angular.element('<section><div>aaaa</div><div>bbbb</div><div>cccc</div><ul><li>1</li><li>2</li><li>3</li><li>4</li><li>5</li></ul></section>'))
+    }
+}]);
+</script>
+</html>

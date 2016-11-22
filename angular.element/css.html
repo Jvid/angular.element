@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>angular.element</title>
+    <style type="text/css">
+        div{
+            width: 300px;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            border:1px solid brown;
+            margin-top: 10px;
+        }
+        button{
+            width: 100px;
+            height:40px;
+            text-align: center;
+            line-height:40px;
+            margin-top: 10px;
+        }
+        #cli_dialog_div{
+            display: none;
+        }
+    </style>
+    <script type="text/javascript" src="../lib/angular.min.js"></script>
+</head>
+<body ng-controller="myCtrl">
+<section>
+    <div style="width: 400px">aaaa</div>
+    <div>bbbb</div>
+    <div>cccc</div>
+</section>
+</body>
+<script type="text/javascript">
+angular.module('myApp',[])
+        .controller('myCtrl',['$scope',function($scope){
+            //css()只能获取行内样式的属性值
+            console.log(angular.element(document).find('section').eq(0).find('div').eq(0).css('width'))
+        }]);
+</script>
+</html>

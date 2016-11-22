@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>angular.element</title>
+    <style type="text/css">
+        div{
+            width: 300px;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            border:1px solid brown;
+            margin-top: 10px;
+        }
+        .a{
+            width: 400px;
+            height: 40px;
+            background: greenyellow;
+        }
+        button{
+            width: 200px;
+            height:40px;
+            text-align: center;
+            line-height:40px;
+            margin-top: 10px;
+        }
+        #cli_dialog_div{
+            display: none;
+        }
+    </style>
+    <script type="text/javascript" src="../lib/angular.min.js"></script>
+</head>
+<body ng-controller="myCtrl">
+<section>
+    <input type="checkbox" checked value="aaa">aaa
+    <input type="checkbox" checked value="bbb">bbb
+    <input type="checkbox" checked value="ccc">ccc
+</section>
+<!--<img src="../imgs/2.jpg" alt="">-->
+<button ng-click="add()">改变input的选择框</button>
+</body>
+<script type="text/javascript">
+    angular.module('myApp',[])
+            .controller('myCtrl',['$scope',function($scope){
+                $scope.tag = true;
+                $scope.add = function(){
+                    $scope.tag ? angular.element(document).find('input').attr('checked',false) : angular.element(document).find('input').attr('checked',true);
+                    $scope.tag = !$scope.tag;
+                };
+            }]);
+</script>
+</html>
